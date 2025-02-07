@@ -1,0 +1,14 @@
+const chatInput = $('When chat message received').first().json.chatInput.toUpperCase();
+const allData = $input.first().json.result;
+if (!chatInput) {
+ return [{ json: { error: "Kullanıcı girdisi boş." } }];
+}
+if (!allData || !Array.isArray(allData)) {
+ return [{ json: { error: "Hisse verileri alınamadı." } }];
+}
+const result = allData.find(item => item.code === chatInput);
+if (result) {
+ return [{ json: result }];
+} else {
+ return [{ json: { error: `Hisse kodu bulunamadı: ${chatInput}` } }];
+}
